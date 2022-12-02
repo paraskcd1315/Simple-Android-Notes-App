@@ -26,6 +26,7 @@ class HomeViewModel @Inject constructor(private val repository: NoteRepository) 
                 listOfNotes ->
                 if (listOfNotes.isEmpty()) {
                     Log.d("DEBUG: Empty", "Empty List")
+                    _noteList.value = emptyList()
                 } else {
                     _noteList.value = listOfNotes
                 }
