@@ -59,6 +59,6 @@ fun NoteButton(
         enabled = enabled,
         modifier = modifier
     ) {
-        Text(text)
+        Text(text, color = Color.White)
     }
 }

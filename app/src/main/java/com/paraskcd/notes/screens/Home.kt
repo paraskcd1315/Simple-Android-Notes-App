@@ -25,7 +25,17 @@ import com.paraskcd.notes.components.NoteButton
 import com.paraskcd.notes.components.NoteInputText
 import com.paraskcd.notes.data.NotesDataSource
 import com.paraskcd.notes.models.Note
+import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
+
+fun formatDate(time: Long): String {
+    val date = Date(time)
+    val format = SimpleDateFormat("EEE, d MMM hh:mm aaa",
+        Locale.getDefault())
+    return format.format(date)
+}
 
 @Composable
 fun Home(
@@ -44,10 +54,10 @@ fun Home(
     Column{
         TopAppBar(
             title ={
-                Text(text = stringResource(id = R.string.app_name))
+                Text(text = stringResource(id = R.string.app_name), color = Color.White)
             },
             actions = {
-                Icon(imageVector = Icons.Rounded.Notifications , contentDescription = "Icon")
+                Icon(imageVector = Icons.Rounded.Notifications , contentDescription = "Icon", tint = Color.White)
             },
             backgroundColor = MaterialTheme.colors.primaryVariant
         )
@@ -125,7 +135,7 @@ fun NoteRow(
                 )
             )
             .fillMaxWidth(),
-        color = Color(0xFFDFE6EB),
+        color = MaterialTheme.colors.primary,
         elevation = 6.dp
     ) {
         Column(
@@ -139,9 +149,9 @@ fun NoteRow(
                 ),
             horizontalAlignment = Alignment.Start
         ) {
-            Text(text = note.title, style = MaterialTheme.typography.subtitle2)
-            Text(text = note.description, style = MaterialTheme.typography.subtitle1)
-//            Text(text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")), style = MaterialTheme.typography.caption)
+            Text(text = note.title, style = MaterialTheme.typography.subtitle2, color = Color.White)
+            Text(text = note.description, style = MaterialTheme.typography.subtitle1, color = Color.White)
+            Text(text = formatDate(note.entryDate.time), style = MaterialTheme.typography.caption, modifier = Modifier.padding(10.dp), color = Color.White)
         }
     }
 }
